@@ -16,6 +16,13 @@ public enum Function {
         this.description = description;
     }
 
+    public static Function findByCommand(String command) {
+        return Arrays.stream(Function.values())
+                .filter(function -> function.command.equals(command))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 기능은 없습니다."));
+    }
+
     public static boolean isNotQuit(String command) {
         return !QUIT.command.equals(command);
     }
