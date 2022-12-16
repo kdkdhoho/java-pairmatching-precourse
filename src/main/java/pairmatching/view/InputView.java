@@ -31,7 +31,7 @@ public class InputView {
         System.out.println("ex) 백엔드, 레벨1, 자동차경주");
         String[] details = readLine().split(",");
         validateDetails(details);
-        return Arrays.asList(details);
+        return Arrays.asList(trimAllString(details));
     }
 
     private void validateDetails(String[] details) {
@@ -42,5 +42,12 @@ public class InputView {
         if (details.length != DETAILS_SIZE) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
+    }
+
+    private String[] trimAllString(String[] input) {
+        for (int i = 0; i < input.length; i++) {
+            input[i] = input[i].trim();
+        }
+        return input;
     }
 }
