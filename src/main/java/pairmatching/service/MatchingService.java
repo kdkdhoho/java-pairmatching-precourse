@@ -2,6 +2,7 @@ package pairmatching.service;
 
 import static pairmatching.domain.Course.BACKEND;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.repository.CrewRepository;
@@ -16,6 +17,7 @@ public class MatchingService {
     public void match(List<String> details) {
         List<Crew> crews = getCrews(details.get(COURSE_IDX));
         List<String> crewNames = convertToName(crews);
+        List<String> shuffledNames = shuffle(crewNames);
     }
 
     private List<Crew> getCrews(String courseName) {
@@ -30,5 +32,9 @@ public class MatchingService {
         return crews.stream()
                 .map(Crew::getName)
                 .collect(Collectors.toList());;
+    }
+
+    private List<String> shuffle(List<String> crewNames) {
+       return Randoms.shuffle(crewNames);
     }
 }
