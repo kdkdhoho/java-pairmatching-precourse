@@ -5,9 +5,9 @@ import pairmatching.service.MainService;
 import pairmatching.util.ExceptionHandler;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class MainController {
     private static final String INIT = "START";
@@ -18,7 +18,7 @@ public class MainController {
     private final MainService mainService = new MainService();
     private final ExceptionHandler exceptionHandler = new ExceptionHandler(outputView);
 
-    public MainController() {
+    public MainController() throws IOException {
         controllers.put(Function.PAIR_MATCHING, new MatchingController(inputView, outputView, exceptionHandler));
     }
 
