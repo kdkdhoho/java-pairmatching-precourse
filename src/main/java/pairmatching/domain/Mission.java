@@ -33,4 +33,11 @@ public enum Mission {
                 .filter(mission -> mission.level == level)
                 .collect(Collectors.toList());
     }
+
+    public static Mission findByName(String name) {
+        return Arrays.stream(Mission.values())
+                .filter(mission -> mission.name == name)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("찾으시는 미션은 없습니다."));
+    }
 }

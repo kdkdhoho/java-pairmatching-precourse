@@ -22,5 +22,6 @@ public class MatchingController implements Controllable {
     public void control() {
         outputView.printOverView();
         List<String> details = exceptionHandler.repeat(inputView::readCourseLevelMission);
+
     }
 }

@@ -18,6 +18,13 @@ public class CrewRepository {
         frontEndStore.put(name, crew);
     }
 
+    public Crew findByName(String name) {
+        if (backEndStore.containsKey(name)) {
+            return backEndStore.get(name);
+        }
+        return frontEndStore.get(name);
+    }
+
     public List<Crew> getBackEndCrews() {
         return new ArrayList<>(backEndStore.values());
     }
