@@ -17,7 +17,7 @@ public class MainController {
     private final MainService mainService = new MainService();
 
     public MainController() {
-        controllers.put(Function.PAIR_MATCHING, new MatchingController());
+        controllers.put(Function.PAIR_MATCHING, new MatchingController(inputView, outputView));
     }
 
     public void run() {
