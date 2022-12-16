@@ -1,7 +1,9 @@
 package pairmatching.repository;
 
 import pairmatching.domain.Crew;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CrewRepository {
@@ -14,5 +16,13 @@ public class CrewRepository {
 
     public void saveFrontEnd(String name, Crew crew) {
         frontEndStore.put(name, crew);
+    }
+
+    public List<Crew> getBackEndCrews() {
+        return new ArrayList<>(backEndStore.values());
+    }
+
+    public List<Crew> getFrontEndCrews() {
+        return new ArrayList<>(frontEndStore.values());
     }
 }
