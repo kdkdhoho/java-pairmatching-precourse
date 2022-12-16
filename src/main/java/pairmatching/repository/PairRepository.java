@@ -1,26 +1,31 @@
 package pairmatching.repository;
 
-import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
 import pairmatching.exception.DuplicatePairException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class PairRepository {
-    private final Map<Mission, Pair> pairStore = new HashMap<>();
+    private static final PairRepository instance = new PairRepository();
 
-    public void save(Mission mission, Pair pair) {
-        if (pairStore.containsValue(pair)) {
-            throw new DuplicatePairException();
-        }
-        pairStore.put(mission, pair);
+    private final List<Pair> pairStore = new ArrayList<>();
+
+    public static PairRepository getInstance() {
+        return instance;
     }
 
-    public Optional<Pair> find(Mission mission) {
-        if (pairStore.containsKey(mission)) {
-            return Optional.of(pairStore.get(mission));
+    public void save(Pair pair) {
+        if (pairStore.contains(pair)) {
+            throw new DuplicatePairException();
         }
-        return Optional.empty();
+        pairStore.add(pair);
+    }
+
+    public Pair find(Pair targetPair) {
+        return pairStore.stream()
+                .filter(pair -> pair.equals(targetPair))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("찾으시는 페어는 없습니다."));
     }
 }
