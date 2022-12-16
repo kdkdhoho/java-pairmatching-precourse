@@ -6,6 +6,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.repository.CrewRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MatchingService {
     private static final int COURSE_IDX = 0;
@@ -14,6 +15,7 @@ public class MatchingService {
 
     public void match(List<String> details) {
         List<Crew> crews = getCrews(details.get(COURSE_IDX));
+        List<String> crewNames = convertToName(crews);
     }
 
     private List<Crew> getCrews(String courseName) {
@@ -22,5 +24,11 @@ public class MatchingService {
             return crewRepository.getBackEndCrews();
         }
         return crewRepository.getFrontEndCrews();
+    }
+
+    private List<String> convertToName(List<Crew> crews) {
+        return crews.stream()
+                .map(Crew::getName)
+                .collect(Collectors.toList());;
     }
 }

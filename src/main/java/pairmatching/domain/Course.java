@@ -20,6 +20,6 @@ public enum Course {
         return Arrays.stream(Course.values())
                 .filter(course -> course.name.equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 과정입니다.");)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 과정입니다."));
     }
 }
